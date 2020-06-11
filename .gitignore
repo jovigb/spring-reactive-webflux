@@ -24,5 +24,4 @@ hs_err_pid*
 /spring-webflux-sample/.idea/
 /.idea
 /spring-webflux-reactive/target
-/spring-webflux-reactive/target
-/spring-webflux-reactive/target
+/spring-webflux-reactive/*.iml
