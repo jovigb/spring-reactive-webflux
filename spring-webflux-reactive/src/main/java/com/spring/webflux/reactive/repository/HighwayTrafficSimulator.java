@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.webflux.reactive.model.Vehicle;
@@ -20,6 +21,9 @@ public class HighwayTrafficSimulator implements HighwayTraffic {
 	private static Logger LOGGER = LoggerFactory.getLogger(HighwayTrafficSimulator.class);
 	private static DecimalFormat plateFormatNumber = new DecimalFormat("0000");
 
+	@Autowired
+	VehicleRepository vehicleRepository;
+
 	public HighwayTrafficSimulator() {
 	}
 
@@ -30,10 +34,16 @@ public class HighwayTrafficSimulator implements HighwayTraffic {
 			boolean inFrameTime = true;
 			int index = 1;
 			while (index <= 30000 && inFrameTime && !fluxSink.isCancelled() ) {
-				fluxSink.next(HighwayUtilities.simulateTraffic());
+				Vehicle vehicle = HighwayUtilities.simulateTraffic();
+				vehicle = vehicleRepository.save(vehicle);
+				fluxSink.next(vehicle);
 				index++;
-
-				long timeMinutesHighwayOpened = startTime.until(LocalDateTime.now(), 
+				vehicleRepository.findByCarPlateNumber(vehicle.getCarPlateNumber());
+				if (index > 30000) {
+					fluxSink.complete();
+				}
+				LOGGER.info("vehicle.toString()");
+				long timeMinutesHighwayOpened = startTime.until(LocalDateTime.now(),
 						ChronoUnit.MILLIS);
 				if (timeMinutesHighwayOpened > 30000) {
 					LOGGER.info("TrafficSimulator finish --> With timer");

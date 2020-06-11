@@ -1,13 +1,29 @@
-logging:
-  level:
-    root: INFO
-    org.springframework.web: INFO
-    com.netflix: INFO
-    org.springframework.security: INFO
-    org.springframework.cloud: INFO
-    org.springframework.boot: INFO
-    io.netty: ERROR
-    reactor.ipc: ERROR
-    reactor: ERROR
-    com.spring.webflux: ERROR  
-    org.springframework.web.reactive: ERROR
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.web: INFO
+#    com.netflix: INFO
+#    org.springframework.security: INFO
+#    org.springframework.cloud: INFO
+#    org.springframework.boot: INFO
+#    io.netty: ERROR
+#    reactor.ipc: ERROR
+#    reactor: ERROR
+#    com.spring.webflux: ERROR
+#    org.springframework.web.reactive: ERROR
+server:
+  port: 9020
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+#      host: localhost
+#      port: 27017
+#      database: test
+#      option:
+#        min-connection-per-host: 30
+#        max-connection-per-host: 300
+#        threads-allowed-to-block-for-connection-multiplier: 50
+

@@ -14,7 +14,7 @@ import reactor.core.scheduler.Schedulers;
 public class HighwayWebClient {
 
     private WebClient webClient = WebClient.builder()
-        .baseUrl("http://localhost:8080")
+        .baseUrl("http://localhost:9020")
         .build();
 
     public Disposable vehicleDetected() {
@@ -23,9 +23,9 @@ public class HighwayWebClient {
                 .uri("/vehicles")
                 .accept(MediaType.APPLICATION_STREAM_JSON)
                 .exchange()
-                .publishOn(Schedulers.single())
+//                .publishOn(Schedulers.single())
                 .flatMapMany(response -> response.bodyToFlux(Vehicle.class))
-                .delayElements(Duration.ofMillis(1000))
+//                .delayElements(Duration.ofMillis(1000))
                 .subscribe(s -> {
                         System.out.println(counter.incrementAndGet() + " >>>>>>>>>>>> " + s);
                     },
