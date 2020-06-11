@@ -19,7 +19,7 @@ public class HighwayHandler {
     
     public Mono<ServerResponse> vehicleDetected(ServerRequest request) {
         return ServerResponse.ok()
-            .contentType(MediaType.APPLICATION_STREAM_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .body(highwayTraffic.flowTraffic(),Vehicle.class);
         
     }

@@ -39,7 +39,7 @@ public class HighwayTrafficSimulator implements HighwayTraffic {
 				fluxSink.next(vehicle);
 				index++;
 				vehicleRepository.findByCarPlateNumber(vehicle.getCarPlateNumber());
-				if (index > 30000) {
+				if (index > 3) {
 					fluxSink.complete();
 				}
 				LOGGER.info("vehicle.toString()");

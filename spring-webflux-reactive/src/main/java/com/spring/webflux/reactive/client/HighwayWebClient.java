@@ -21,7 +21,7 @@ public class HighwayWebClient {
         AtomicInteger counter = new AtomicInteger(0);
         return webClient.get()
                 .uri("/vehicles")
-                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .accept(MediaType.APPLICATION_JSON)
                 .exchange()
 //                .publishOn(Schedulers.single())
                 .flatMapMany(response -> response.bodyToFlux(Vehicle.class))
@@ -37,7 +37,7 @@ public class HighwayWebClient {
         AtomicInteger counter = new AtomicInteger(0);
         return webClient.get()
                 .uri("/vehicles")
-                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .flatMapMany(response -> response.bodyToFlux(Vehicle.class))
                 .filter(v -> v.getSpeed() > 120)

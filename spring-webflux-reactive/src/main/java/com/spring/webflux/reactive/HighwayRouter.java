@@ -15,7 +15,7 @@ public class HighwayRouter {
     public RouterFunction<ServerResponse> route(HighwayHandler highwayHandler) {
         return RouterFunctions
         		.route(RequestPredicates.GET("/vehicles")
-        				.and(RequestPredicates.accept(MediaType.APPLICATION_STREAM_JSON)),
+        				.and(RequestPredicates.accept(MediaType.APPLICATION_JSON)),
         				highwayHandler::vehicleDetected);
     }
 
