@@ -41,9 +41,9 @@ public class GreetingHandler {
               fluxSink.next(""+index);
               index++;
             }
-        }).share();    
-        //}).publish().autoConnect();
-        //}).delayElements(Duration.ofMillis(1000)).share();    
+        }).share();
+//        }).publish().autoConnect();
+//        }).delayElements(Duration.ofMillis(1000)).share();
         
         return ServerResponse.ok()
             .contentType(MediaType.TEXT_EVENT_STREAM)

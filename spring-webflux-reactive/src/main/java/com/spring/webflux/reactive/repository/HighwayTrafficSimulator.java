@@ -42,7 +42,7 @@ public class HighwayTrafficSimulator implements HighwayTraffic {
 				if (index > 30000) {
 					fluxSink.complete();
 				}
-				LOGGER.info("vehicle.toString()");
+				LOGGER.info("vehicle.toString() " + vehicle.toString());
 				long timeMinutesHighwayOpened = startTime.until(LocalDateTime.now(),
 						ChronoUnit.MILLIS);
 				if (timeMinutesHighwayOpened > 30000) {
